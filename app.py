@@ -1,12 +1,15 @@
 from flask import Flask, request, render_template
+#Fournit le modèle MobileNetV2 et les outils pour le traitement d'image
 from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2, preprocess_input, decode_predictions
 from tensorflow.keras.preprocessing import image
 import numpy as np
+#Manipuler les images (ouvrir, convertir, redimensionner, etc.)
 from PIL import Image
 import os
 
 app = Flask(__name__)
 model = MobileNetV2(weights='imagenet')
+img = Image.open("./pho.jpeg")
 
 def model_predict(img_path):
     img = Image.open(img_path).convert('RGB')
@@ -33,4 +36,4 @@ def index():
     return render_template('index.html', prediction=prediction)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run("0.0.0.0", port=8081, debug=True)
