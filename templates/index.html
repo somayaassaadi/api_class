@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Classification</title>
+</head>
+<body>
+    <h1>Image Classification avec MobileNetV2</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <input type="submit" value="Classer l'image">
+    </form>
+
+    {% if prediction %}
+        <h2>Résultat :</h2>
+        <p>{{ prediction }}</p>
+        <img src="{{ image_path }}" alt="Image" width="300">
+    {% endif %}
+</body>
+</html>
